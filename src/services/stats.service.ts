@@ -7,3 +7,10 @@ export async function incrementTotal() {
 
   return total;
 }
+
+export async function getTotal() {
+  const key = createStatsKey("views");
+  const total = redis.get<number>(key);
+
+  return total ?? 0;
+}

@@ -1,19 +1,55 @@
+---
+interface Props {
+  views: number;
+}
+
+const { views } = Astro.props;
+---
+
 <section class="hero">
-  <h1>GitViews</h1>
-  <p>GitHub visit counter.</p>
+  <h1 class="title">GitViews 🟆</h1>
+  <p class="desc">Simple GitHub view counter.</p>
+  <p class="views">
+    <span>{views.toString().padStart(7, 0)}</span> views counted.
+  </p>
+  <div class="links">
+    <a href="https://github.com/remvze/gitviews">(github)</a>
+  </div>
 </section>
 
 <style>
   .hero {
     padding: 180px 0 90px;
 
-    & h1 {
+    & .title {
       font-weight: 500;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
     }
 
-    & p {
+    & .desc {
       color: var(--color-foreground-subtle);
+    }
+
+    & .views {
+      margin-top: 4px;
+      font-size: var(--font-sm);
+      color: var(--color-foreground-subtler);
+
+      & span {
+        color: var(--color-foreground-subtle);
+        font-family: var(--font-mono);
+      }
+    }
+
+    & .links {
+      margin-top: 16px;
+
+      & a {
+        font-size: var(--font-xsm);
+        color: var(--color-foreground);
+        font-weight: 500;
+        text-decoration: none;
+      }
     }
   }
 </style>

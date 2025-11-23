@@ -1,12 +1,17 @@
 ---
+export const prerender = false;
+
 import Layout from "@/layouts/layout.astro";
 import Hero from "@/components/hero.astro";
-
 import { Container } from "@/components/container";
+
+import { getTotal } from "@/services/stats.service";
+
+const views = await getTotal();
 ---
 
 <Layout>
   <Container>
-    <Hero />
+    <Hero views={views} />
   </Container>
 </Layout>
