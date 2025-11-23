@@ -8,16 +8,46 @@ import "@fontsource/ibm-plex-mono/400.css";
 import "@fontsource/ibm-plex-mono/400-italic.css";
 import "@fontsource/ibm-plex-mono/500.css";
 import "@fontsource/ibm-plex-mono/500-italic.css";
+
+interface Props {
+  description?: string;
+  og?: string;
+  title?: string;
+}
+
+const title = Astro.props.title
+  ? `${Astro.props.title} — GitViews`
+  : "GitViews: GitHub Profile & Repo View Counter";
+
+const description =
+  Astro.props.description ||
+  "Super simple counter for your GitHub profile and project visits.";
+
+const og = Astro.props.og || "/og.png";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <meta content="width=device-width" name="viewport" />
+    <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+    <meta content={Astro.generator} name="generator" />
+    <meta content="#18181b" name="theme-color" />
+
+    <title>{title}</title>
+    <meta content={title} name="title" />
+    <meta content={description} name="description" />
+
+    <meta content={title} property="og:title" />
+    <meta content={description} property="og:description" />
+    <meta content="GitViews" property="og:site_name" />
+    <meta content="https://gitviews.com/" property="og:url" />
+    <meta content="website" property="og:type" />
+    <meta content={`https://gitviews.com${og}`} property="og:image" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link href="/sitemap-index.xml" rel="sitemap" />
   </head>
   <body>
     <slot />

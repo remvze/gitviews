@@ -7,6 +7,7 @@ const { views } = Astro.props;
 ---
 
 <section class="hero">
+  <img src="/logo.svg" alt="GitViews Logo" class="logo" />
   <h1 class="title">GitViews</h1>
   <p class="desc">Simple GitHub view counter.</p>
   <p class="views">
@@ -20,6 +21,13 @@ const { views } = Astro.props;
 <style>
   .hero {
     padding: 180px 0 90px;
+
+    & .logo {
+      display: block;
+      width: 24px;
+      aspect-ratio: 1/1;
+      margin-bottom: 36px;
+    }
 
     & .title {
       font-weight: 500;
