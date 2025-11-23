@@ -1,41 +1,25 @@
 export const prerender = false;
 
-import { redis } from "@/database/redis";
-import { createStatsKey, createUserViewsKey } from "@/lib/keys";
 import type { APIRoute } from "astro";
-import { makeBadge } from "badge-maker";
+
+import { redis } from "@/database/redis";
+import { generateBadge } from "@/lib/badge";
+import { createStatsKey, createUserViewsKey } from "@/lib/keys";
 
 export const GET: APIRoute = async ({ request, params }) => {
   const username = params.username;
   const key = createUserViewsKey(username);
   const views = await redis.incr(key);
 
-  const url = new URL(request.url);
-  const sp = url.searchParams;
+  const { searchParams } = new URL(request.url);
+  const style = searchParams.get("style");
+  const labelColor = searchParams.get("label-color");
+  const color = searchParams.get("color");
 
-  const style = [
-    "flat",
-    "flat-square",
-    "plastic",
-    "for-the-badge",
-    "social",
-  ].includes(sp.get("style"))
-    ? (sp.get("style") as
-        | "flat"
-        | "flat-square"
-        | "plastic"
-        | "for-the-badge"
-        | "social")
-    : "flat-square";
-  const labelColor = sp.get("label-color") ?? "black";
-  const messageColor = sp.get("message-color") ?? "grey";
-
-  const badge = makeBadge({
-    label: "Profile Views",
-    labelColor: labelColor,
-    message: String(views),
-    color: messageColor,
+  const badge = generateBadge("Profile Views", String(views), {
     style,
+    color,
+    labelColor,
   });
 
   const statsKey = createStatsKey("views");

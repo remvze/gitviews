@@ -1,15 +1,26 @@
 export const prerender = false;
 
+import type { APIRoute } from "astro";
+
 import { redis } from "@/database/redis";
 import { createUserRepoViewsKey } from "@/lib/keys";
-import type { APIRoute } from "astro";
-import { makeBadge } from "badge-maker";
+import { generateBadge } from "@/lib/badge";
 
-export const GET: APIRoute = async ({ params }) => {
+export const GET: APIRoute = async ({ params, request }) => {
   const username = params.username;
   const key = createUserRepoViewsKey(username);
   const views = (await redis.get<number>(key)) ?? 0;
-  const badge = makeBadge({ label: "Repo Views", message: String(views) });
+
+  const { searchParams } = new URL(request.url);
+  const style = searchParams.get("style");
+  const labelColor = searchParams.get("label-color");
+  const color = searchParams.get("color");
+
+  const badge = generateBadge("Repo Views", String(views), {
+    style,
+    color,
+    labelColor,
+  });
 
   return new Response(badge, {
     headers: {
