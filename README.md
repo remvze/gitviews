@@ -2,6 +2,8 @@
 
 Super simple GitHub view counter.
 
+![GitHub Repo Views](https://gitviews.com/repo/remvze/gitviews.svg)
+
 ## Badges
 
 ### 🟆 Profile Views
