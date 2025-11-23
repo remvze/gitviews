@@ -9,7 +9,7 @@ export const GET: APIRoute = async ({ params }) => {
   const username = params.username;
   const key = createUserRepoViewsKey(username);
   const views = (await redis.get<number>(key)) ?? 0;
-  const badge = makeBadge({ label: "Profile Views", message: String(views) });
+  const badge = makeBadge({ label: "Repo Views", message: String(views) });
 
   return new Response(badge, {
     headers: {
