@@ -1,12 +1,12 @@
-# GitViews 🟆
+# GitViews ✨
 
-Super simple GitHub view counter.
+> Super simple GitHub view counter.
 
 ![GitHub Repo Views](https://gitviews.com/repo/remvze/gitviews.svg)
 
 ## Badges
 
-### 🟆 Profile Views
+### Profile Views
 
 **URL**
 
@@ -23,7 +23,7 @@ https://gitviews.com/user/<your-github-username>.svg
 > [!NOTE]
 > Please replace `<your-github-username>` with your GitHub username (without @).
 
-### 🟆 Repo Views
+### Repo Views
 
 **URL**
 
@@ -40,7 +40,7 @@ https://gitviews.com/repo/<your-username>/<your-repo>.svg
 > [!NOTE]
 > Please replace `<your-username>` with your GitHub username (without @), and `<your-repo>` with your repository name.
 
-### 🟆 All Repos Views
+### All Repos Views
 
 **URL**
 
