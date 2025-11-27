@@ -4,7 +4,7 @@
 
 ![GitHub Repo Views](https://gitviews.com/repo/remvze/gitviews.svg)
 
-## Badges
+## Badges 🏅
 
 ### Profile Views
 
