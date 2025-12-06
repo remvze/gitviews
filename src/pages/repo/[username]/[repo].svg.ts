@@ -17,11 +17,18 @@ export const GET: APIRoute = async ({ params, request }) => {
   const labelColor = searchParams.get("label-color");
   const color = searchParams.get("color");
 
-  const badge = generateBadge("Repo Views", String(views.toLocaleString()), {
-    style,
-    color,
-    labelColor,
-  });
+  let base = parseInt(searchParams.get("base") || "");
+  base = !Number.isNaN(base) ? base : 0;
+
+  const badge = generateBadge(
+    "Repo Views",
+    String((views + base).toLocaleString()),
+    {
+      style,
+      color,
+      labelColor,
+    }
+  );
 
   await Promise.all([incrementUserRepoViews(username), incrementTotal()]);
 
