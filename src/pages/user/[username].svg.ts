@@ -19,15 +19,13 @@ export const GET: APIRoute = async ({ request, params }) => {
   let base = parseInt(searchParams.get("base") || "");
   base = !Number.isNaN(base) ? base : 0;
 
-  const badge = generateBadge(
-    "Profile Views",
-    String((views + base).toLocaleString()),
-    {
-      style,
-      color,
-      labelColor,
-    }
-  );
+  const label = searchParams.get("label") || "Profile Views";
+
+  const badge = generateBadge(label, String((views + base).toLocaleString()), {
+    style,
+    color,
+    labelColor,
+  });
 
   await incrementTotal();
 

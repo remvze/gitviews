@@ -112,6 +112,18 @@ https://gitviews.com/user/<your-username>.svg?style=for-the-badge
 
 ---
 
+`label`
+
+Set the label of the badge.
+
+**Example:**
+
+```
+https://gitviews.com/user/<user>.svg?label=Views
+```
+
+---
+
 `label-color`
 
 Sets the background color of the badge label. Accepts hex, rgb, or color names.

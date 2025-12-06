@@ -17,15 +17,13 @@ export const GET: APIRoute = async ({ params, request }) => {
   let base = parseInt(searchParams.get("base") || "");
   base = !Number.isNaN(base) ? base : 0;
 
-  const badge = generateBadge(
-    "Repo Views",
-    String((views + base).toLocaleString()),
-    {
-      style,
-      color,
-      labelColor,
-    }
-  );
+  const label = searchParams.get("label") || "Repo Views";
+
+  const badge = generateBadge(label, String((views + base).toLocaleString()), {
+    style,
+    color,
+    labelColor,
+  });
 
   return new Response(badge, {
     headers: {
